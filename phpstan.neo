@@ -6,8 +6,8 @@ parameters:
         - app
         - src
     
-    level: 9
+    level: 8
 
     excludePaths:
-    
+
     checkMissingIterableValueType: false 
