@@ -36,4 +36,12 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
         });
     }
+
+    /**
+     * @return array
+     */
+    protected function centralDomains(): array
+    {
+        return config(key: 'tenancy.central_domains');
+    }
 }
