@@ -9,6 +9,8 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
+use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -29,9 +31,13 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             foreach ( $this->centralDomains() as $domain ) {
-                Route::middleware('api')
+                Route::prefix('api')
                     ->domain($domain)
-                    ->prefix('api')
+                    ->middleware([
+                        'api',
+                        InitializeTenancyByDomain::class,
+                        PreventAccessFromCentralDomains::class,
+                    ])
                     ->group(base_path('routes/api.php'));
 
                 Route::middleware('web')
