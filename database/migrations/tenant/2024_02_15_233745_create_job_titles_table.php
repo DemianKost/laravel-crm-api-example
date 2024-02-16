@@ -12,8 +12,9 @@ return new class extends Migration
     {
         Schema::create('job_titles', static function (Blueprint $table): void {
             $table->id();
-
+            $table->uuid('uuid')->unique();
             
+            $table->string('name');
 
             $table->timestamps();
         });
