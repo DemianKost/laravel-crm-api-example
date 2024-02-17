@@ -18,4 +18,5 @@ class JobTitle extends Model
         'uuid',
         'name',
     ];
+    
 }
