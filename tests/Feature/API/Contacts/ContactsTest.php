@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-use JustSteveKing\StatusCode\Http;
+use App\Models\User;
 
 it( 'it can retrieve a list of contacts', function() {
+    auth()->loginUsingId(User::factory()->create()->id);
+
     $this->getJson(
         uri: route('api:contacts:index'),
     )->assertStatus(
-        status: Http::OK,
+        status: 200,
     );
 });

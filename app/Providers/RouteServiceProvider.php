@@ -35,9 +35,10 @@ class RouteServiceProvider extends ServiceProvider
                     ->domain($domain)
                     ->middleware([
                         'api',
-                        InitializeTenancyByDomain::class,
-                        PreventAccessFromCentralDomains::class,
+                        // InitializeTenancyByDomain::class,
+                        // PreventAccessFromCentralDomains::class,
                     ])
+                    ->as('api:')
                     ->group(base_path('routes/api.php'));
 
                 Route::middleware('web')
