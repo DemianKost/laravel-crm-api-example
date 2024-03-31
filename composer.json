@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "predis/predis": "^2.2",
+        "spatie/laravel-query-builder": "^5.8",
         "stancl/tenancy": "^3.7"
     },
     "require-dev": {
