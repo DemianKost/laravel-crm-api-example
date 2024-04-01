@@ -13,7 +13,8 @@
         "laravel/tinker": "^2.8",
         "predis/predis": "^2.2",
         "spatie/laravel-query-builder": "^5.8",
-        "stancl/tenancy": "^3.7"
+        "stancl/tenancy": "^3.7",
+        "timacdonald/json-api": "^1.0@beta"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -70,6 +71,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

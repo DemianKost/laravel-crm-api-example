@@ -7,18 +7,15 @@ namespace App\Http\Resources\Api;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Support\Arrayable;
 use JsonSerializable;
-use Illuminate\Http\Resources\Json\JsonResource;
+use TiMacDonald\JsonApi\JsonApiResource;
 
-class ContactResource extends JsonResource
+class ContactResource extends JsonApiResource
 {
-    /**
-     * @param Request $request
-     * @return array|Arrayable|JsonSerializable
-     */
-    public function toArray(Request $request): array|Arrayable|JsonSerializable
+    public function toAttributes(Request $request): array
     {
         return [
-            
+            'name' => $this->name,
+            'email' => $this->email,
         ];
     }
 }
