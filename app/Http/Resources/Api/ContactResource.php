@@ -11,11 +11,29 @@ use TiMacDonald\JsonApi\JsonApiResource;
 
 class ContactResource extends JsonApiResource
 {
+    /**
+     * @param Request $request
+     * @return array
+     */
     public function toAttributes(Request $request): array
     {
         return [
-            'name' => $this->name,
-            'email' => $this->email,
+            'title' => $this->title,
+            'name' => [
+                'first' => $this->first_name,
+                'middle' => $this->middle_name,
+                'last' => $this->last_name,
+            ],
+            'preferred' => $this->preferred_name,
+            'full_name' => $this->fullName(),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function fullName(): string
+    {
+        return ltrim("{$this->first_name} {$this->middle_name} {$this->last_name}");
     }
 }
