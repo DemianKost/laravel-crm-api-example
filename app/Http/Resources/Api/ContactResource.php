@@ -26,6 +26,8 @@ class ContactResource extends JsonApiResource
             ],
             'preferred' => $this->preferred_name,
             'full_name' => $this->fullName(),
+            'phone' => $this->phone,
+            'email' => $this->email,
         ];
     }
 
