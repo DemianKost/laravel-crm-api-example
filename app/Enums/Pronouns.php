@@ -18,7 +18,10 @@ final class Pronouns
     protected static string $xe_xem = 'xe/xem';
     protected static string $ze_hir = 'ze/hir'; 
 
-    public function all(): array
+    /**
+     * @return array<int,string>
+     */
+    public static function all(): array
     {
         return [
             static::$ae_aer,
