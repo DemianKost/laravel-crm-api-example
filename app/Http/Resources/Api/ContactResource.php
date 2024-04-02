@@ -11,6 +11,11 @@ use TiMacDonald\JsonApi\JsonApiResource;
 
 class ContactResource extends JsonApiResource
 {
+    public function toType(Request $request): string
+    {
+        return 'contact';
+    }
+
     /**
      * @param Request $request
      * @return array
@@ -28,6 +33,7 @@ class ContactResource extends JsonApiResource
             'full_name' => $this->fullName(),
             'phone' => $this->phone,
             'email' => $this->email,
+            'pronouns' => $this->pronouns,
         ];
     }
 

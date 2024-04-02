@@ -25,6 +25,7 @@ class Contact extends Model
         'last_name',
         'preferred_name',
         'email',
-        'phone'
+        'phone',
+        'pronouns',
     ];
 }
