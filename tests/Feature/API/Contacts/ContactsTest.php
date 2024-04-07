@@ -26,5 +26,7 @@ it( 'it can retrieve a list of contacts', function() {
 it( 'it can create a new contact', function(string $string) {
     expect(Contact::query()->count())->toEqual(0);
 
-    
+    // $this->postJson(
+    //     uri: route(''),
+    // )
 })->with('strings');
