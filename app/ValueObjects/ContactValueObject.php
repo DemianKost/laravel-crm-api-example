@@ -14,7 +14,7 @@ final class ContactValueObject
         public null|string $prefferedName,
         public null|string $phone,
         public null|string $email,
-        public string $pronoun,
+        public string $pronouns,
     ) {}
     
     /**
@@ -30,7 +30,7 @@ final class ContactValueObject
             'preffered_name' => $this->prefferedName,
             'phone' => $this->phone,
             'email' => $this->email,
-            'pronoun' => $this->pronoun,
+            'pronouns' => $this->pronouns,
         ];
     }
 }

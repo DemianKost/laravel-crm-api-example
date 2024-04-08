@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Api\Contacts;
 
+use App\Enums\Pronouns;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
 {
@@ -30,6 +32,7 @@ class StoreRequest extends FormRequest
             'name.full' => ['required', 'string', 'min:2', 'max:255'],
             'phone' => ['nullable', 'string'],
             'email' => ['nullable', 'email:rfc,dns'],
+            'pronouns' => ['nullable', 'string', Rule::in(values: Pronouns::all())],
         ];
     }
 }
