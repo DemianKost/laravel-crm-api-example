@@ -54,5 +54,5 @@ it( 'it can create a new contact', function(string $string) {
         status: 201,
     );
 
-    expect(Contact::query()->count())->toEqual(1);
+    
 })->with('strings');

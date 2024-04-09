@@ -33,7 +33,7 @@ class ContactResource extends JsonApiResource
             'full_name' => $this->fullName(),
             'phone' => $this->phone,
             'email' => $this->email,
-            'pronoun' => $this->pronoun,
+            'pronouns' => $this->pronouns,
         ];
     }
 

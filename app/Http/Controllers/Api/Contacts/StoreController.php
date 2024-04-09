@@ -18,7 +18,7 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request): JsonResponse
     {
         return new JsonResponse(
-            data: new ContactResource(
+            data: ContactResource::collection(
                 resource: []
             ),
             status: 201
