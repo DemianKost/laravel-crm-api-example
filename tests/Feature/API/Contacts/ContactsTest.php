@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\Pronouns;
 use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -49,10 +50,11 @@ it( 'it can create a new contact', function(string $string) {
             ],
             'phone' => $string,
             'email' => "$string@email.com",
+            'pronous' => Pronouns::random(),
         ],
     )->assertStatus(
         status: 201,
     );
 
-    
+    expect(Contact::query()->count())->toEqual(1);
 })->with('strings');

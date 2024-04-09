@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Enums;
 
 use Spatie\Enum\Enum;
+use Illuminate\Support\Arr;
 
 final class Pronouns
 {
@@ -34,5 +35,13 @@ final class Pronouns
             static::$xe_xem,
             static::$ze_hir,
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public static function random(): string
+    {
+        return strval(Arr::random(array: static::all()));
     }
 }
