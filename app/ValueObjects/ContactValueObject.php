@@ -3,8 +3,9 @@
 declare(strict_types=1);
 
 namespace App\ValueObjects;
+use App\Contracts\ValueObjectContract;
 
-final class ContactValueObject
+final class ContactValueObject implements ValueObjectContract
 {
     public function __construct(
         public null|string $title,
