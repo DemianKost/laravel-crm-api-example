@@ -37,7 +37,6 @@ it( 'it can create a new contact', function(string $string) {
 
     expect(Contact::query()->count())->toEqual(0);
 
-    
     $this->postJson(
         uri: route('api:contacts:store'),
         data: [
