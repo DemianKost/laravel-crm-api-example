@@ -54,6 +54,8 @@ it( 'it can create a new contact', function(string $string) {
         ],
     )->assertStatus(
         status: 201,
+    )->assertJson( fn (AssertableJson $json) =>
+        $json->where('type', 'contact')->etc()
     );
 
     expect(Contact::query()->count())->toEqual(1);

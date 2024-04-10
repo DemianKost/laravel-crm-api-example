@@ -7,6 +7,16 @@ use App\Contracts\ValueObjectContract;
 
 final class ContactValueObject implements ValueObjectContract
 {
+    /**
+     * @param null|string $title
+     * @param string $firstName
+     * @param null|string $middleName
+     * @param null|string $lastName
+     * @param null|string $prefferedName
+     * @param null|string $phone
+     * @param null|string $email
+     * @param string $pronouns
+     */
     public function __construct(
         public null|string $title,
         public string $firstName,
