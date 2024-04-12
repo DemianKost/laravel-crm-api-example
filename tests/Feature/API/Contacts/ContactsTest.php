@@ -85,3 +85,22 @@ it( 'it can create a new contact', function(string $string) {
 
     expect(Contact::query()->count())->toEqual(1);
 })->with('strings');
+
+it( 'can retrieve contact by UUID', function() {
+    auth()->loginUsingId(User::factory()->create()->id);
+
+    $contact = Contact::factory()->create();
+
+    $this->getJson(
+        uri: route('api:contacts:show', $contact->uuid),
+    )->assertStatus(
+        status: 200
+    )->assertJson( fn (AssertableJson $json) =>
+            $json
+                ->where('type', 'contact')
+                ->where('attributes.name.first', $contact->first_name)
+                ->where('attributes.name.last', $contact->last_name)
+                ->where('attributes.phone', $contact->phone)
+                ->etc(),
+    );
+});
