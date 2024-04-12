@@ -104,3 +104,13 @@ it( 'can retrieve contact by UUID', function() {
                 ->etc(),
     );
 });
+
+it( 'it receives 401 error when try retrieve contact by UUID', function() {
+    $contact = Contact::factory()->create();
+    
+    $this->getJson(
+        uri: route('api:contacts:show', $contact->uuid),
+    )->assertStatus(
+        status: 401
+    );
+} );
