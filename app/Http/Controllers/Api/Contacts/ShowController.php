@@ -21,8 +21,7 @@ class ShowController extends Controller
     {
         $contact = QueryBuilder::for(
             subject: Contact::class,
-        )->where('uuid', $uuid)
-            ->firstOrFail();
+        )->where('uuid', $uuid)->firstOrFail();
 
         return new JsonResponse(
             data: new ContactResource(
