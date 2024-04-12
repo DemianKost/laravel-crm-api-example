@@ -32,6 +32,27 @@ it( 'it can retrieve a list of contacts', function() {
     );
 });
 
+it( 'gets and Unauthorized response when not logged in on the create route', function(string $string) {
+    $this->postJson(
+        uri: route('api:contacts:store'),
+        data: [
+            'title' => $string,
+            'name' => [
+                'first' => $string,
+                'middle' => $string,
+                'last' => $string,
+                'preferred' => $string,
+                'full' => "$string $string $string",
+            ],
+            'phone' => $string,
+            'email' => "$string@email.com",
+            'pronous' => Pronouns::random(),
+        ],
+    )->assertStatus(
+        status: 401
+    );
+} )->with('strings');
+
 it( 'it can create a new contact', function(string $string) {
     auth()->loginUsingId(User::factory()->create()->id);
 
@@ -58,7 +79,8 @@ it( 'it can create a new contact', function(string $string) {
         $json
             ->where('type', 'contact')
             ->where('attributes.name.first', $string)
-            ->etc() 
+            ->where('attributes.phone', $string)
+            ->etc()
     );
 
     expect(Contact::query()->count())->toEqual(1);
