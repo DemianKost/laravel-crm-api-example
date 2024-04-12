@@ -105,12 +105,22 @@ it( 'can retrieve contact by UUID', function() {
     );
 });
 
-it( 'it receives 401 error when try retrieve contact by UUID', function() {
+it( 'it receives 401 error when try to retrieve contact by UUID', function() {
     $contact = Contact::factory()->create();
-    
+
     $this->getJson(
         uri: route('api:contacts:show', $contact->uuid),
     )->assertStatus(
         status: 401
     );
 } );
+
+it( 'it receives 404 error when try to retrieve not existing contact by UUID', function(string $string) {
+    auth()->loginUsingId(User::factory()->create()->id);
+
+    $this->getJson(
+        uri: route('api:contacts:show', $string),
+    )->assertStatus(
+        status: 404
+    );
+})->with('strings');
