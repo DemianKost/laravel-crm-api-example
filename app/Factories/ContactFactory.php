@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Factories;
 
-use App\ValueObjects\ContactValueObject;
+use Domains\Contacts\ValueObjects\ContactValueObject;
 
 final class ContactFactory
 {
