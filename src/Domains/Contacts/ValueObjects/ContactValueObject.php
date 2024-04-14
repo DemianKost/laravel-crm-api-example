@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domains\Contacts\ValueObjects;
 
-use App\Contracts\ValueObjectContract;
+use Infrastructure\Contracts\ValueObjectContract;
 
 final class ContactValueObject implements ValueObjectContract
 {

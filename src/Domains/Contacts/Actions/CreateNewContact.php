@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Domains\Contacts\Actions;
 
-use App\Contracts\ValueObjectContract;
+use Infrastructure\Contracts\ValueObjectContract;
 use App\Models\Contact;
 use Illuminate\Database\Eloquent\Model;
 
