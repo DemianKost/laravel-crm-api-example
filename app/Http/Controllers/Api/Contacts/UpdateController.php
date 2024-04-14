@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Contacts;
 
-use App\Actions\Contacts\UpdateContact;
+use Domains\Contacts\Actions\Contacts\UpdateContact;
 use Domains\Contacts\Factories\ContactFactory;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\ContactResource;

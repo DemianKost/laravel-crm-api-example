@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Actions\Contacts\CreateNewContact;
+use Domains\Contacts\Actions\CreateNewContact;
 use Domains\Contacts\Enums\Pronouns;
 use Domains\Contacts\Factories\ContactFactory;
 use Illuminate\Database\Eloquent\Model;

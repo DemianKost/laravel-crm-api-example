@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\Contacts;
+namespace Domains\Contacts\Actions;
 use App\Contracts\ValueObjectContract;
 use App\Models\Contact;
 use Illuminate\Database\Eloquent\Model;
