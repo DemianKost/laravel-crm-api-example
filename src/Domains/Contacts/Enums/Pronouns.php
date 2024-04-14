@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Enums;
+namespace Domains\Contacts\Enums;
 
 use Spatie\Enum\Enum;
 use Illuminate\Support\Arr;

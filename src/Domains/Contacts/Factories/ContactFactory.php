@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Factories;
+namespace Domains\Contacts\Factories;
 
 use Domains\Contacts\ValueObjects\ContactValueObject;
 

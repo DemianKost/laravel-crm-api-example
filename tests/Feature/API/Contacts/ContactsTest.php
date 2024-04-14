@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Enums\Pronouns;
+use Domains\Contacts\Enums\Pronouns;
 use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;

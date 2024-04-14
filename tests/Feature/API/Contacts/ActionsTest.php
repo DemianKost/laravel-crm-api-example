@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use App\Actions\Contacts\CreateNewContact;
-use App\Enums\Pronouns;
-use App\Factories\ContactFactory;
+use Domains\Contacts\Enums\Pronouns;
+use Domains\Contacts\Factories\ContactFactory;
 use Illuminate\Database\Eloquent\Model;
 
 it( 'can create a new contact', function(string $string) {
