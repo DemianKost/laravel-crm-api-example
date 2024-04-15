@@ -6,6 +6,7 @@ use Domains\Contacts\Enums\Pronouns;
 use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Spatie\EventSourcing\StoredEvents\Models\EloquentStoredEvent;
 
 it( 'gets an unathorized response when not logged in on the index', function() {
     $this->getJson(
@@ -56,7 +57,7 @@ it( 'gets and Unauthorized response when not logged in on the create route', fun
 it( 'it can create a new contact', function(string $string) {
     auth()->loginUsingId(User::factory()->create()->id);
 
-    expect(Contact::query()->count())->toEqual(0);
+    expect(EloquentStoredEvent::query()->count())->toEqual(0);
 
     $this->postJson(
         uri: route('api:contacts:store'),
@@ -77,7 +78,7 @@ it( 'it can create a new contact', function(string $string) {
         status: 202,
     );
 
-    expect(Contact::query()->count())->toEqual(1);
+    expect(EloquentStoredEvent::query()->count())->toEqual(1);
 })->with('strings');
 
 it( 'can retrieve contact by UUID', function() {
