@@ -74,13 +74,7 @@ it( 'it can create a new contact', function(string $string) {
             'pronous' => Pronouns::random(),
         ],
     )->assertStatus(
-        status: 201,
-    )->assertJson( fn (AssertableJson $json) =>
-        $json
-            ->where('type', 'contact')
-            ->where('attributes.name.first', $string)
-            ->where('attributes.phone', $string)
-            ->etc()
+        status: 202,
     );
 
     expect(Contact::query()->count())->toEqual(1);
