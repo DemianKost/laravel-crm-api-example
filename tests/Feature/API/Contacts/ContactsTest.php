@@ -104,6 +104,10 @@ it( 'can update existing contact by UUID', function( string $string ) {
     )->assertStatus(
         status: 202,
     );
+
+    expect(
+        $contact->refresh(),
+    )->first_name->toEqual($string);
 })->with('strings');
 
 it( 'can retrieve contact by UUID', function() {
