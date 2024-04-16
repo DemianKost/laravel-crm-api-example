@@ -81,6 +81,31 @@ it( 'it can create a new contact', function(string $string) {
     expect(EloquentStoredEvent::query()->count())->toEqual(1);
 })->with('strings');
 
+it( 'can update existing contact by UUID', function( string $string ) {
+    auth()->loginUsingId(User::factory()->create()->id);
+
+    $contact = Contact::factory()->create();
+
+    $this->putJson(
+        uri: route('api:contacts:update', $contact->uuid),
+        data: [
+            'title' => $string,
+            'name' => [
+                'first' => $string,
+                'middle' => $string,
+                'last' => $string,
+                'preferred' => $string,
+                'full' => "$string $string $string",
+            ],
+            'phone' => $string,
+            'email' => "$string@email.com",
+            'pronous' => Pronouns::random(),
+        ]
+    )->assertStatus(
+        status: 202,
+    );
+})->with('strings');
+
 it( 'can retrieve contact by UUID', function() {
     auth()->loginUsingId(User::factory()->create()->id);
 
