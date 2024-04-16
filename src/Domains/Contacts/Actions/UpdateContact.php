@@ -3,16 +3,14 @@
 declare(strict_types=1);
 
 namespace Domains\Contacts\Actions;
-use Infrastructure\Contracts\ValueObjectContract;
 use App\Models\Contact;
-use Illuminate\Database\Eloquent\Model;
 
 final class UpdateContact
 {
-    public static function handle(ValueObjectContract $object): Model
+    public static function handle(Contact $contact, array $attributes): bool
     {
-        return Contact::query()->create(
-            attributes: $object->toArray(),
+        return $contact->update(
+            attributes: $attributes,
         );
     }
 }

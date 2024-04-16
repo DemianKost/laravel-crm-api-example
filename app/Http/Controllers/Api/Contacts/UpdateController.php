@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\Contacts;
 
-use Domains\Contacts\Actions\Contacts\UpdateContact;
+use App\Models\Contact;
+use Domains\Contacts\Actions\UpdateContact;
 use Domains\Contacts\Factories\ContactFactory;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\ContactResource;
@@ -18,16 +19,21 @@ class UpdateController extends Controller
      */
     public function __invoke(Request $request, string $uuid): JsonResponse
     {
-        $contact = UpdateContact::handle(
-            object: ContactFactory::make(
-                attributes: $request->validated(),
-            ),
+        $contact = Contact::query()
+            ->where('uuid', $uuid)
+            ->firstOrFail();
+
+        $valueObject = ContactFactory::make(
+            attributes: $request->validated(),
+        );
+
+        UpdateContact::handle(
+            contact: $contact,
+            attributes: $valueObject->toArray(),
         );
 
         return new JsonResponse(
-            data: new ContactResource(
-                resource: $contact
-            ),
+            data: $contact->refresh(),
             status: 202,
         );
     }
