@@ -19,15 +19,13 @@ class StoreController extends Controller
      */
     public function __invoke(StoreRequest $request): JsonResponse
     {
-        $aggregate = ContactAggregateRoot::retrieve(
+        ContactAggregateRoot::retrieve(
             uuid: Str::uuid()->toString(),
         )->createContact(
             object: ContactFactory::make(
                 attributes: $request->validated(),
             ),
-        );
-
-        $aggregate->persist();
+        )->persist();
 
         return new JsonResponse(
             data: null,
