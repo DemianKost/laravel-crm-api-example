@@ -110,6 +110,24 @@ it( 'can update existing contact by UUID', function( string $string ) {
     )->first_name->toEqual($string);
 })->with('strings');
 
+it('throws exception when cannot find contact by UUID', function(string $uuid) {
+    auth()->loginUsingId(User::factory()->create()->id);
+
+    $this->putJson(
+        uri: route('api:contacts:update', $uuid),
+        data: [
+            'title' => 'test',
+            'name' => [
+                'first' => 'test',
+                'full' => "test test test",
+            ],
+            'pronous' => Pronouns::random(),
+        ]
+    )->assertStatus(
+        status: 404,
+    );
+})->with('uuids');
+
 it( 'can retrieve contact by UUID', function() {
     auth()->loginUsingId(User::factory()->create()->id);
 
