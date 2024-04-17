@@ -84,6 +84,8 @@ it( 'it can create a new contact', function(string $string) {
 it( 'can update existing contact by UUID', function( string $string ) {
     auth()->loginUsingId(User::factory()->create()->id);
 
+    expect(EloquentStoredEvent::query()->count())->toEqual(0);
+
     $contact = Contact::factory()->create();
 
     $this->putJson(
@@ -104,10 +106,8 @@ it( 'can update existing contact by UUID', function( string $string ) {
     )->assertStatus(
         status: 202,
     );
-
-    expect(
-        $contact->refresh(),
-    )->first_name->toEqual($string);
+    
+    expect(EloquentStoredEvent::query()->count())->toEqual(1);
 })->with('strings');
 
 it('throws exception when cannot find contact by UUID', function(string $uuid) {

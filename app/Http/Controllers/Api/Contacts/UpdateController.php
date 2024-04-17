@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\Contacts;
 use App\Http\Requests\Api\Contacts\UpdateRequest;
 use App\Models\Contact;
 use Domains\Contacts\Actions\UpdateContact;
+use Domains\Contacts\Aggregates\ContactAggregateRoot;
 use Domains\Contacts\Factories\ContactFactory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
@@ -22,17 +23,17 @@ class UpdateController extends Controller
             ->where('uuid', $uuid)
             ->firstOrFail();
 
-        $valueObject = ContactFactory::make(
-            attributes: $request->validated(),
-        );
-
-        UpdateContact::handle(
-            contact: $contact,
-            attributes: $valueObject->toArray(),
-        );
+        ContactAggregateRoot::retrieve(
+            uuid: $uuid,
+        )->updateContact(
+            object: ContactFactory::make(
+                attributes: $request->validated(),
+            ),
+            uuid: $uuid
+        )->persist();
 
         return new JsonResponse(
-            data: $contact->refresh(),
+            data: null,
             status: 202,
         );
     }
