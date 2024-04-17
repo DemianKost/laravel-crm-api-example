@@ -7,8 +7,10 @@ use App\Models\Contact;
 
 final class UpdateContact
 {
-    public static function handle(Contact $contact, array $attributes): bool
+    public static function handle(string $uuid, array $attributes): bool
     {
+        $contact = Contact::where('uuid', $uuid)->firstOrFail();
+
         return $contact->update(
             attributes: $attributes,
         );
