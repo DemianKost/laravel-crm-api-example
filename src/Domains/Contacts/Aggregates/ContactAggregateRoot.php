@@ -39,6 +39,7 @@ class ContactAggregateRoot extends AggregateRoot
                 uuid: $uuid,
             ),
         );
+        
 
         return $this;
     }
