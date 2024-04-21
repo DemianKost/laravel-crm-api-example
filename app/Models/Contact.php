@@ -30,6 +30,7 @@ class Contact extends Model
     ];
 
     /**
-     * 
+     * @return HasMany
      */
+    
 }
