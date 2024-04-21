@@ -16,6 +16,7 @@ class InteractionValueObject implements ValueObjectContract
     public function __construct(
         public string $type,
         public int $contact,
+        public null|int $user = null,
         public null|string $content = null,
         public null|int $project = null,
     ) {}
@@ -28,6 +29,7 @@ class InteractionValueObject implements ValueObjectContract
         return [
             'type' => $this->type,
             'content' => $this->content,
+            'user_id' => $this->user,
             'contact_id' => $this->contact,
             'project_id' => $this->project,
         ];

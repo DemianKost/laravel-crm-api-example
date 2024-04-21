@@ -20,6 +20,11 @@ return new class extends Migration
 
             $table->mediumText('content')->nullable();
 
+            $table->foreignId('user_id')
+                ->nullable()
+                ->index()
+                ->constrained()
+                ->nullOnDelete();
             $table->foreignId('contact_id')
                 ->index()
                 ->constrained()

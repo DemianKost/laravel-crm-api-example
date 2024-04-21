@@ -9,12 +9,14 @@ final class InteractionFactory
 {
     /**
      * @param array attributes
+     * @return InteractionValueObject
      */
     public static function make(array $attributes): InteractionValueObject
     {
         return new InteractionValueObject(
             type: $attributes['type'],
             contact: $attributes['contact'],
+            user: $attributes['user'],
             content: $attributes['content'],
             project: $attributes['project'],
         );

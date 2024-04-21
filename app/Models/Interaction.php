@@ -22,6 +22,7 @@ class Interaction extends Model
         'uuid',
         'type',
         'content',
+        'user_id',
         'contact_id',
         'project_id',
     ];
