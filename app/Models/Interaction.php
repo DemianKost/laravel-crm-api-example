@@ -37,6 +37,17 @@ class Interaction extends Model
     /**
      * @return BelongsTo
      */
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(
+            related: User::class,
+            foreignKey: 'user_id',
+        );
+    }
+
+    /**
+     * @return BelongsTo
+     */
     public function contact(): BelongsTo
     {
         return $this->belongsTo(

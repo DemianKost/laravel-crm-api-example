@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contact extends Model
@@ -32,5 +33,11 @@ class Contact extends Model
     /**
      * @return HasMany
      */
-    
+    public function interactions(): HasMany
+    {
+        return $this->hasMany(
+            related: Interaction::class,
+            foreignKey: 'contact_id',
+        );
+    }
 }
