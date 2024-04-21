@@ -40,7 +40,6 @@ class ContactAggregateRoot extends AggregateRoot
             ),
         );
         
-
         return $this;
     }
 }
