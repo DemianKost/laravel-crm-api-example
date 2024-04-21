@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Interaction;
 use App\Models\User;
+use Illuminate\Testing\Fluent\AssertableJson;
 
 it('can get a list of interactions', function() {
     $user = User::factory()->create();
@@ -16,6 +17,9 @@ it('can get a list of interactions', function() {
     $this->getJson(
         uri: route('api:interactions:index'),
     )->assertStatus(
-        code: 200,
+        status: 200,
+    )->assertJson(
+        fn( AssertableJson $json ) => 
+            $json->count(10)->etc(),
     );
 });

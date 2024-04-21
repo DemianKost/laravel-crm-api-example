@@ -18,4 +18,8 @@ Route::middleware(['auth:sanctum'])->group( function() {
         Route::put('/{uuid}', App\Http\Controllers\Api\Contacts\UpdateController::class)->name('update');
     });
 
+    Route::prefix('interactions')->as('interactions:')->group( function() {
+        Route::get('/', App\Http\Controllers\Api\Interactions\IndexController::class)->name('index');
+    });
+
 });
