@@ -6,7 +6,7 @@ namespace Domains\Contacts\Events;
 use Domains\Contacts\ValueObjects\ContactValueObject;
 use Spatie\EventSourcing\StoredEvents\ShouldBeStored;
 
-class ContactWasCreated extends ShouldBeStored
+final class ContactWasCreated extends ShouldBeStored
 {
     /**
      * @param ContactValueObject $object
