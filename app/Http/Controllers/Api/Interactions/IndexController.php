@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Interactions;
 
 use App\Http\Controllers\Controller;
-use App\Models\Interaction;
+use App\Http\Resources\Api\InteractionResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Spatie\QueryBuilder\QueryBuilder;
 
 class IndexController extends Controller
 {
@@ -18,12 +17,10 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request): JsonResponse
     {
-        $interactions = QueryBuilder::for(
-            subject: Interaction::class,
-        )->paginate();
-
         return new JsonResponse(
-            data: [],
+            data: InteractionResource::collection(
+                resource: auth()->user()->interactions,
+            ),
             status: 200,
         );
     }
