@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Interaction;
 use App\Models\User;
+use App\Models\Contact;
 use Domains\Interactions\Enums\InteractionType;
 use Illuminate\Testing\Fluent\AssertableJson;
 
@@ -32,9 +33,11 @@ it('can create a new interaction', function() {
     $this->postJson(
         uri: route('api:interactions:store'),
         data: [
-            'type' => InteractionType::EMAIL,
+            'type' => InteractionType::EMAIL->value,
+            'contact' => Contact::factory()->create()->id,
             'content' => 'some content here',
-            'user_id' => $user->id,
+            'user' => null,
+            'project' => null,
         ],
     )->assertStatus(
         status: 201,
