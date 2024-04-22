@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Providers;
 
 use Domains\Contacts\Handlers\ContactHandler;
+use Domains\Interactions\Handlers\InteractionHandler;
 use Illuminate\Support\ServiceProvider;
 use Spatie\EventSourcing\Facades\Projectionist;
 
@@ -18,6 +19,7 @@ class EventSourcingServiceProvider extends ServiceProvider
         Projectionist::addProjectors(
             projectors: [
                 ContactHandler::class,
+                InteractionHandler::class,
             ]
         );
     }

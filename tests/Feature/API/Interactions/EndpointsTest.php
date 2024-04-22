@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Interaction;
 use App\Models\User;
+use Domains\Interactions\Enums\InteractionType;
 use Illuminate\Testing\Fluent\AssertableJson;
 
 it('can get a list of interactions', function() {
@@ -21,5 +22,21 @@ it('can get a list of interactions', function() {
     )->assertJson(
         fn( AssertableJson $json ) => 
             $json->count(10)->etc(),
+    );
+});
+
+it('can create a new interaction', function() {
+    $user = User::factory()->create();
+    auth()->login( $user );
+
+    $this->postJson(
+        uri: route('api:interactions:store'),
+        data: [
+            'type' => InteractionType::EMAIL,
+            'content' => 'some content here',
+            'user_id' => $user->id,
+        ],
+    )->assertStatus(
+        status: 201,
     );
 });
