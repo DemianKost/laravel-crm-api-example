@@ -32,9 +32,21 @@ class StoreRequest extends FormRequest
                 'nullable',
                 'string',
             ],
-            'contact' => ['required'],
-            'project' => ['nullable'],
-            'user' => ['nullable'],
+            'contact' => [
+                'required',
+                'int',
+                'exists:contacts,id'
+            ],
+            'project' => [
+                'nullable',
+                'int',
+                'exists:projects,id',
+            ],
+            'user' => [
+                'nullable',
+                'int',
+                'exists:users,id',
+            ],
         ];
     }
 }
