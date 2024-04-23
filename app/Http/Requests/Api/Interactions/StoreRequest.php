@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Api\Interactions;
 
+use Domains\Interactions\Enums\InteractionType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest
@@ -22,8 +23,15 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => ['required', 'string'],
-            'content' => ['nullable', 'string'],
+            'type' => [
+                'required',
+                'string',
+                'in:' . implode(',', InteractionType::all()),
+            ],
+            'content' => [
+                'nullable',
+                'string',
+            ],
             'contact' => ['required'],
             'project' => ['nullable'],
             'user' => ['nullable'],
