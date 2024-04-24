@@ -30,6 +30,8 @@ it('can create a new interaction', function() {
     $user = User::factory()->create();
     auth()->login( $user );
 
+    expect(Interaction::query()->count())->toEqual(0);
+
     $this->postJson(
         uri: route('api:interactions:store'),
         data: [
@@ -42,4 +44,6 @@ it('can create a new interaction', function() {
     )->assertStatus(
         status: 201,
     );
+
+    expect(Interaction::query()->count())->toEqual(1);
 });

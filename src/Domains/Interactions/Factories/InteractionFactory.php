@@ -17,8 +17,8 @@ final class InteractionFactory
             type: $attributes['type'],
             contact: $attributes['contact'],
             user: $attributes['user'],
-            content: $attributes['content'],
-            project: $attributes['project'],
+            content: $attributes['content'] ?? null,
+            project: $attributes['project'] ?? null,
         );
     }
 }
