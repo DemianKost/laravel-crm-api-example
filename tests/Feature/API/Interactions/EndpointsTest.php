@@ -63,3 +63,14 @@ it('can get a single interaction by id', function() {
                 ->etc(),
     );;
 });
+
+it('throws 404 error when trying to get non-existing interaction', function(string $uuid) {
+    $user = User::factory()->create();
+    auth()->login( $user );
+
+    $this->getJson(
+        route('api:interactions:show', $uuid)
+    )->assertStatus(
+        status: 404,
+    );
+})->with('uuids');
