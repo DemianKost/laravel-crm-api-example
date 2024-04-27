@@ -21,6 +21,7 @@ Route::middleware(['auth:sanctum'])->group( function() {
     Route::prefix('interactions')->as('interactions:')->group( function() {
         Route::get('/', App\Http\Controllers\Api\Interactions\IndexController::class)->name('index');
         Route::post('/', App\Http\Controllers\Api\Interactions\StoreController::class)->name('store');
+        Route::get('/{uuid}', App\Http\Controllers\Api\Interactions\ShowController::class)->name('show');
     });
 
 });
