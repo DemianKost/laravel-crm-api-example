@@ -16,7 +16,7 @@ final class InteractionFactory
         return new InteractionValueObject(
             type: $attributes['type'],
             contact: $attributes['contact'],
-            user: $attributes['user'],
+            user: $attributes['user'] ?? null,
             content: $attributes['content'] ?? null,
             project: $attributes['project'] ?? null,
         );

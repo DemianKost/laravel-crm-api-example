@@ -38,8 +38,6 @@ it('can create a new interaction', function() {
             'type' => InteractionType::EMAIL->value,
             'contact' => Contact::factory()->create()->id,
             'content' => 'some content here',
-            'user' => null,
-            'project' => null,
         ],
     )->assertStatus(
         status: 201,
