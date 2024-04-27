@@ -56,5 +56,10 @@ it('can get a single interaction by id', function() {
         route('api:interactions:show', $interaction->uuid)
     )->assertStatus(
         status: 200,
-    );
+    )->assertJson(
+        value: fn( AssertableJson $json ) => 
+            $json->where('type', 'interaction')
+                ->where('attributes.content', $interaction->content)
+                ->etc(),
+    );;
 });
