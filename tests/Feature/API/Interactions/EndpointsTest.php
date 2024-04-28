@@ -98,3 +98,19 @@ it('can update a single interaction uuid', function(string $string) {
         $interaction->refresh()
     )->content->toEqual($string);
 })->with('strings');
+
+it('throws error when trying to update non-existing interaction by UUID', function( string $uuid ) {
+    $user = User::factory()->create();
+    auth()->login( $user );
+
+    $this->putJson(
+        uri: route('api:interactions:update', $uuid),
+        data: [
+            'type' => InteractionType::EMAIL->value,
+            'contact' => Contact::factory()->create()->id,
+            'content' => 'Some content',
+        ],
+    )->assertStatus(
+        status: 404,
+    );
+})->with('uuids');
