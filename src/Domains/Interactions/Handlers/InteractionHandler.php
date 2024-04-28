@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Domains\Interactions\Handlers;
 
 use Domains\Interactions\Actions\CreateInteraction;
+use Domains\Interactions\Actions\UpdateInteraction;
 use Domains\Interactions\Events\InteractionWasCreated;
+use Domains\Interactions\Events\InteractionWasUpdated;
 use Spatie\EventSourcing\EventHandlers\Projectors\Projector;
 
 class InteractionHandler extends Projector
@@ -18,6 +20,18 @@ class InteractionHandler extends Projector
     {
         CreateInteraction::handle(
             object: $event->object,
+        );
+    }
+
+    /**
+     * @param InteractionWasUpdated $event
+     * @return void
+     */
+    public function onInteractionWasUpdated(InteractionWasUpdated $event): void
+    {
+        UpdateInteraction::handle(
+            uuid: $event->uuid,
+            attributes: $event->object->toArray(),
         );
     }
 }

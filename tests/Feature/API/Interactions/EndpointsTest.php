@@ -46,7 +46,7 @@ it('can create a new interaction', function() {
     // expect(Interaction::query()->count())->toEqual(1);
 });
 
-it('can get a single interaction by id', function() {
+it('can get a single interaction by uuid', function() {
     $user = User::factory()->create();
     auth()->login( $user );
 
@@ -61,7 +61,7 @@ it('can get a single interaction by id', function() {
             $json->where('type', 'interaction')
                 ->where('attributes.content', $interaction->content)
                 ->etc(),
-    );;
+    );
 });
 
 it('throws 404 error when trying to get non-existing interaction', function(string $uuid) {
@@ -69,8 +69,32 @@ it('throws 404 error when trying to get non-existing interaction', function(stri
     auth()->login( $user );
 
     $this->getJson(
-        route('api:interactions:show', $uuid)
+        uri: route('api:interactions:show', $uuid)
     )->assertStatus(
         status: 404,
     );
 })->with('uuids');
+
+it('can update a single interaction uuid', function(string $string) {
+    $user = User::factory()->create();
+    auth()->login( $user );
+
+    $interaction = Interaction::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $this->putJson(
+        uri: route('api:interactions:update', $interaction->uuid),
+        data: [
+            'type' => InteractionType::EMAIL->value,
+            'contact' => $interaction->contact_id,
+            'content' => $string,
+        ],
+    )->assertStatus(
+        status: 202,
+    );
+
+    expect(
+        $interaction->refresh()
+    )->content->toEqual($string);
+})->with('strings');

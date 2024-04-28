@@ -22,6 +22,7 @@ Route::middleware(['auth:sanctum'])->group( function() {
         Route::get('/', App\Http\Controllers\Api\Interactions\IndexController::class)->name('index');
         Route::post('/', App\Http\Controllers\Api\Interactions\StoreController::class)->name('store');
         Route::get('/{uuid}', App\Http\Controllers\Api\Interactions\ShowController::class)->name('show');
+        Route::put('/{uuid}', App\Http\Controllers\Api\Interactions\UpdateController::class)->name('update');
     });
 
 });
