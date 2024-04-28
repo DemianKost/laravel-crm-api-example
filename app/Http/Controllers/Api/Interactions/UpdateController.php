@@ -29,7 +29,10 @@ class UpdateController extends Controller
             uuid: Str::uuid()->toString(),
         )->updateInteraction(
             object: InteractionFactory::make(
-                attributes: $request->validated(),
+                attributes: array_merge(
+                    $request->validated(),
+                    ['user' => auth()->id()]
+                ),
             ),
             uuid: $uuid,
         )->persist();
