@@ -114,3 +114,22 @@ it('throws error when trying to update non-existing interaction by UUID', functi
         status: 404,
     );
 })->with('uuids');
+
+it('can delete interaction by UUID', function() {
+    $user = User::factory()->create();
+    auth()->login( $user );
+
+    $interaction = Interaction::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    expect(Interaction::query()->count())->toEqual(1);
+
+    $this->deleteJson(
+        uri: route('api:interactions:delete', $interaction->uuid)
+    )->assertStatus(
+        status: 200,
+    );
+
+    expect(Interaction::query()->count())->toEqual(0);
+});

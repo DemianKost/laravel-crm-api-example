@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Domains\Interactions\Aggregates;
 
+use Domains\Interactions\Events\InteractionWasDeleted;
 use Domains\Interactions\Events\InteractionWasUpdated;
 use Infrastructure\Contracts\ValueObjectContract;
 use Spatie\EventSourcing\AggregateRoots\AggregateRoot;
@@ -36,6 +37,21 @@ class InteractionAggregateRoot extends AggregateRoot
         $this->recordThat(
             domainEvent: new InteractionWasUpdated(
                 object: $object,
+                uuid: $uuid,
+            ),
+        );
+
+        return $this;
+    }
+
+    /**
+     * @param string $uuid
+     * @return self
+     */
+    public function deleteInteraction(string $uuid): self
+    {
+        $this->recordThat(
+            domainEvent: new InteractionWasDeleted(
                 uuid: $uuid,
             ),
         );
