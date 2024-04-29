@@ -20,8 +20,6 @@ class DeleteController extends Controller
      */
     public function __invoke(Request $request, string $uuid): JsonResponse
     {
-        $interaction = Interaction::where('uuid', $uuid)->firstOrFail();
-
         InteractionAggregateRoot::retrieve(
             uuid: Str::uuid()->toString(),
         )->deleteInteraction(

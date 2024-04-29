@@ -133,3 +133,14 @@ it('can delete interaction by UUID', function() {
 
     expect(Interaction::query()->count())->toEqual(0);
 });
+
+it('throws 404 error when trying to delete interaction with non-correct UUID', function(string $uuid) {
+    $user = User::factory()->create();
+    auth()->login( $user );
+
+    $this->deleteJson(
+        uri: route('api:interactions:delete', $uuid)
+    )->assertStatus(
+        status: 404,
+    );
+})->with('uuids');

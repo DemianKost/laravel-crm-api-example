@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Contact;
 
+use App\Models\Interaction;
 use Domains\Interactions\Actions\CreateInteraction;
 use Domains\Interactions\Enums\InteractionType;
 use Domains\Interactions\Factories\InteractionFactory;

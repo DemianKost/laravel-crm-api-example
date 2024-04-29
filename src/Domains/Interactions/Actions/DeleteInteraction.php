@@ -14,6 +14,8 @@ class DeleteInteraction
      */
     public static function handle(string $uuid): void
     {
-        Interaction::where('uuid', $uuid)->delete();
+        $interaction = Interaction::where('uuid', $uuid)->firstOrFail();
+
+        $interaction->delete();
     }
 }
