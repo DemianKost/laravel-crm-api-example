@@ -6,6 +6,7 @@ use App\Models\Contact;
 use App\Models\Interaction;
 use Domains\Interactions\Enums\InteractionType;
 use Domains\Interactions\Events\InteractionWasCreated;
+use Domains\Interactions\Events\InteractionWasDeleted;
 use Domains\Interactions\Factories\InteractionFactory;
 use Domains\Interactions\Handlers\InteractionHandler;
 
@@ -38,3 +39,15 @@ it( 'can store a new interaction', function() {
         Interaction::query()->count(),
     )->toEqual(1);
 } );
+
+it('can delete a new interaction', function() {
+    $interaction = Interaction::factory()->create();
+
+    $event = new InteractionWasDeleted(
+        uuid: $interaction->uuid,
+    );
+
+    expect(
+        $event,
+    )->toBeInstanceOf( InteractionWasDeleted::class );
+});
